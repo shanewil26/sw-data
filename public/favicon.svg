@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Dark background -->
+  <rect width="32" height="32" fill="#0a0a0f"/>
+  <!-- Accent dot top-right -->
+  <circle cx="27" cy="5" r="2.5" fill="#e8401c"/>
+  <!-- SW text -->
+  <text
+    x="16"
+    y="22"
+    font-family="Arial Black, Arial, sans-serif"
+    font-weight="900"
+    font-size="14"
+    fill="#f5f3ef"
+    text-anchor="middle"
+    letter-spacing="-0.5"
+  >SW</text>
+</svg>
