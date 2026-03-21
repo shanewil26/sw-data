@@ -272,7 +272,7 @@ export default function Contact() {
         </h2>
         <div className="mt-2 divide-y divide-white/[0.08]">
           {[
-            { label: 'Email', value: 'hello@swdata.co.uk' },
+            { label: 'Email', value: 'hello@swgrowth.co.uk' },
             { label: 'Location', value: 'Available Worldwide' },
             { label: 'Response', value: 'Within 24 hours' },
           ].map(({ label, value }) => (
