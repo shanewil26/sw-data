@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://swdata.com',
+    url: 'https://swdata.co.uk',
     siteName: 'SW Data',
     title: 'SW Data — Data & Marketing Consulting',
     description:
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
       'Specialist data and marketing consultancy. We help businesses grow through data strategy, marketing analytics, direct marketing, and audience insight.',
   },
   alternates: {
-    canonical: 'https://swdata.com',
+    canonical: 'https://swdata.co.uk',
   },
   icons: {
     icon: [
@@ -84,17 +84,14 @@ export const metadata: Metadata = {
   },
 }
 
-// JSON-LD Structured Data
-// This tells Google, ChatGPT, Perplexity and other AI search engines
-// exactly what SW Data is, what it does, and what services it offers
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'ProfessionalService',
-      '@id': 'https://swdata.com/#business',
+      '@id': 'https://swdata.co.uk/#business',
       name: 'SW Data',
-      url: 'https://swdata.com',
+      url: 'https://swdata.co.uk',
       description:
         'SW Data is a specialist data and marketing consultancy helping businesses grow through data strategy, marketing analytics, audience insights, direct mail marketing, and growth consulting.',
       areaServed: {
@@ -176,24 +173,22 @@ const jsonLd = {
       },
       contactPoint: {
         '@type': 'ContactPoint',
-        email: 'hello@swdata.com',
+        email: 'hello@swdata.co.uk',
         contactType: 'customer service',
         availableLanguage: 'English',
       },
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://swdata.com/#website',
-      url: 'https://swdata.com',
+      '@id': 'https://swdata.co.uk/#website',
+      url: 'https://swdata.co.uk',
       name: 'SW Data',
       description: 'Data and Marketing Consulting',
       publisher: {
-        '@id': 'https://swdata.com/#business',
+        '@id': 'https://swdata.co.uk/#business',
       },
     },
     {
-      // FAQPage schema — this is what powers FAQ rich results in Google
-      // and helps AI engines extract clear Q&A answers about SW Data
       '@type': 'FAQPage',
       mainEntity: [
         {
