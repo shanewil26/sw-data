@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_GB',
-    url: 'https://swdata.co.uk',
+    url: 'https://swgrowth.co.uk',
     siteName: 'SW Data',
     title: 'SW Data — Data & Marketing Consulting',
     description:
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
       'Specialist data and marketing consultancy. We help businesses grow through data strategy, marketing analytics, direct marketing, and audience insight.',
   },
   alternates: {
-    canonical: 'https://swdata.co.uk',
+    canonical: 'https://swgrowth.co.uk',
   },
   icons: {
     icon: [
@@ -89,9 +89,9 @@ const jsonLd = {
   '@graph': [
     {
       '@type': 'ProfessionalService',
-      '@id': 'https://swdata.co.uk/#business',
+      '@id': 'https://swgrowth.co.uk/#business',
       name: 'SW Data',
-      url: 'https://swdata.co.uk',
+      url: 'https://swgrowth.co.uk',
       description:
         'SW Data is a specialist data and marketing consultancy helping businesses grow through data strategy, marketing analytics, audience insights, direct mail marketing, and growth consulting.',
       areaServed: {
@@ -173,19 +173,19 @@ const jsonLd = {
       },
       contactPoint: {
         '@type': 'ContactPoint',
-        email: 'hello@swdata.co.uk',
+        email: 'hello@swgrowth.co.uk',
         contactType: 'customer service',
         availableLanguage: 'English',
       },
     },
     {
       '@type': 'WebSite',
-      '@id': 'https://swdata.co.uk/#website',
-      url: 'https://swdata.co.uk',
+      '@id': 'https://swgrowth.co.uk/#website',
+      url: 'https://swgrowth.co.uk',
       name: 'SW Data',
       description: 'Data and Marketing Consulting',
       publisher: {
-        '@id': 'https://swdata.co.uk/#business',
+        '@id': 'https://swgrowth.co.uk/#business',
       },
     },
     {

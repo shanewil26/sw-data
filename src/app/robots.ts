@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://swdata.co.uk/sitemap.xml',
+    sitemap: 'https://swgrowth.co.uk/sitemap.xml',
   }
 }
