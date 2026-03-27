@@ -1,17 +1,14 @@
 import Navbar from '@/components/Navbar'
-import Hero from '@/components/Hero'
-import About from '@/components/About'
 import EmailCapture from '@/components/EmailCapture'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 
-export default function Home() {
+export default function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Navbar />
-      <main>
-        <Hero />
-        <About />
+      <main className="pt-16">
+        {children}
         <EmailCapture />
         <Contact />
       </main>
