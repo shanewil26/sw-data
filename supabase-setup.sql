@@ -5,6 +5,7 @@ create table contacts (
   first_name text not null,
   last_name text not null,
   email text not null,
+  phone text,
   service text,
   message text,
   source text default 'swdata.com',  -- useful when you add more sites later
