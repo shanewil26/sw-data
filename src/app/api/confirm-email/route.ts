@@ -29,20 +29,42 @@ export async function GET(req: NextRequest) {
   // Sync to HubSpot if configured
   const HUBSPOT_API_KEY = process.env.HUBSPOT_API_KEY
   if (HUBSPOT_API_KEY) {
-    await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
-      method: 'POST',
-      headers: {
+    try {
+      const hubspotHeaders = {
         Authorization: `Bearer ${HUBSPOT_API_KEY}`,
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        properties: {
-          email: data.email,
-          firstname: data.first_name,
-          hs_email_optout: false,
-        },
-      }),
-    }).catch(err => console.error('HubSpot sync error:', err))
+      }
+
+      const createRes = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
+        method: 'POST',
+        headers: hubspotHeaders,
+        body: JSON.stringify({
+          properties: {
+            email: data.email,
+            firstname: data.first_name,
+          },
+        }),
+      })
+
+      if (createRes.status === 409) {
+        // Contact already exists in HubSpot — update it instead
+        const updateRes = await fetch(
+          `https://api.hubapi.com/crm/v3/objects/contacts/${encodeURIComponent(data.email)}?idProperty=email`,
+          {
+            method: 'PATCH',
+            headers: hubspotHeaders,
+            body: JSON.stringify({ properties: { firstname: data.first_name } }),
+          }
+        )
+        if (!updateRes.ok) {
+          console.error('HubSpot update error:', await updateRes.text())
+        }
+      } else if (!createRes.ok) {
+        console.error('HubSpot sync error:', await createRes.text())
+      }
+    } catch (err) {
+      console.error('HubSpot sync error:', err)
+    }
   }
 
   return NextResponse.redirect(`${siteUrl}/?confirmed=true`)

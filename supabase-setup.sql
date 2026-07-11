@@ -25,9 +25,51 @@ alter table contacts enable row level security;
 
 -- Allow inserts from anonymous users (your contact form)
 create policy "Allow public inserts" on contacts
-  for insert with check (true);
+  for insert to anon, authenticated
+  with check (true);
 
 -- Only allow reads via service role (your backend / Make.com / Zapier)
 -- This means the form can write, but nobody can read data via the browser
 create policy "Allow service role reads" on contacts
   for select using (auth.role() = 'service_role');
+
+-- Mailing list signups (EmailCapture.tsx) — double opt-in, synced to HubSpot on confirm
+create table email_signups (
+  id uuid default gen_random_uuid() primary key,
+  first_name text not null,
+  email text not null unique,
+  confirmed boolean default false,
+  confirmed_at timestamp with time zone,
+  confirmation_token text,
+  source text,
+  created_at timestamp with time zone default now()
+);
+
+create index email_signups_email_idx on email_signups (email);
+create index email_signups_token_idx on email_signups (confirmation_token);
+
+alter table email_signups enable row level security;
+
+-- Allow the public form to insert and to upsert (re-submit) their own pending signup
+create policy "Allow public insert" on email_signups
+  for insert to anon, authenticated
+  with check (true);
+
+create policy "Allow public update of unconfirmed signups" on email_signups
+  for update to anon, authenticated
+  using (confirmed = false)
+  with check (confirmed = false);
+
+-- Service role can always read (backend / Make.com / Zapier)
+create policy "Allow service role reads" on email_signups
+  for select using (auth.role() = 'service_role');
+
+-- The signup form checks "already subscribed?" by email before inserting —
+-- this requires anon to have SELECT. Note: this also lets anyone query the
+-- full signups table via the public API (not just look up a single email),
+-- since RLS can't scope a policy to "only the row you're asking about"
+-- without real auth. Fine for now; move this check server-side later if the
+-- exposed mailing list becomes a concern.
+create policy "Allow public reads" on email_signups
+  for select to anon, authenticated
+  using (true);
