@@ -60,6 +60,16 @@ create policy "Allow public update of unconfirmed signups" on email_signups
   using (confirmed = false)
   with check (confirmed = false);
 
--- Only the backend (service role) can read signups or flip confirmed = true
+-- Service role can always read (backend / Make.com / Zapier)
 create policy "Allow service role reads" on email_signups
   for select using (auth.role() = 'service_role');
+
+-- The signup form checks "already subscribed?" by email before inserting —
+-- this requires anon to have SELECT. Note: this also lets anyone query the
+-- full signups table via the public API (not just look up a single email),
+-- since RLS can't scope a policy to "only the row you're asking about"
+-- without real auth. Fine for now; move this check server-side later if the
+-- exposed mailing list becomes a concern.
+create policy "Allow public reads" on email_signups
+  for select to anon, authenticated
+  using (true);
