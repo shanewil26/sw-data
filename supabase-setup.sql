@@ -8,7 +8,7 @@ create table contacts (
   phone text,
   service text,
   message text,
-  source text default 'swdata.com',  -- useful when you add more sites later
+  source text default 'swgrowth.co.uk',  -- useful when you add more sites later
   created_at timestamp with time zone default now()
 );
 

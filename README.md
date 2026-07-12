@@ -1,4 +1,4 @@
-# SW Data — Next.js Website
+# SW Growth UK — Next.js Website
 
 Built with Next.js 14, Tailwind CSS, Supabase, and Google Analytics.
 
@@ -37,7 +37,7 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=   # From GA4: Admin → Data Streams → Measurem
 ## Supabase Setup
 
 1. Create a free account at [supabase.com](https://supabase.com)
-2. Create a new project (e.g. "sw-data")
+2. Create a new project (e.g. "sw-growth-uk")
 3. Go to **SQL Editor** and run the contents of `supabase-setup.sql`
 4. Go to **Settings → API** and copy your Project URL and anon key into `.env.local`
 
@@ -46,7 +46,7 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=   # From GA4: Admin → Data Streams → Measurem
 ## Google Analytics Setup
 
 1. Go to [analytics.google.com](https://analytics.google.com)
-2. Create a new GA4 property for swdata.com
+2. Create a new GA4 property for swgrowth.co.uk
 3. Add a Web data stream with your domain
 4. Copy the **Measurement ID** (starts with `G-`) into `.env.local`
 
@@ -83,7 +83,7 @@ select * from contacts order by created_at desc;
 
 Query by site:
 ```sql
-select * from contacts where source = 'swdata.com';
+select * from contacts where source = 'swgrowth.co.uk';
 ```
 
 ---
