@@ -18,7 +18,7 @@ export type ContactFormData = {
 export async function submitContactForm(data: ContactFormData) {
   const { error } = await supabase
     .from('contacts')
-    .insert([{ ...data, source: 'swdata.com' }])
+    .insert([{ ...data, source: 'swgrowth.co.uk' }])
 
   if (error) throw error
   return { success: true }
